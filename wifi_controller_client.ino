@@ -1,8 +1,3 @@
-/*
-    Wireless Serial using UDP ESP8266
-    Hardware: NodeMCU
-    Slave Board connects to Access Point
-*/
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 
