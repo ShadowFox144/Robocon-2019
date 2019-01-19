@@ -1,8 +1,6 @@
 /*
     Wireless Serial using UDP ESP8266
     Hardware: NodeMCU
-    Circuits4you.com
-    2018
     Slave Board connects to Access Point
 */
 #include <ESP8266WiFi.h>
@@ -19,7 +17,7 @@ IPAddress ClientIP(192,168,4,2);
 // A UDP instance to let us send and receive packets over UDP
 WiFiUDP udp;
 
-char packetBuffer[9];   //Where we get the UDP data
+uint8_t packetBuffer[9];//Where we get the UDP data
 //======================================================================
 //                Setup
 //======================================================================
@@ -78,9 +76,19 @@ void loop()
     }
     else {
       // We've received a UDP packet, send it to serial
-      udp.read(packetBuffer, 4); // read the packet into the buffer, we are reading 4 byte
-      Serial.println(packetBuffer);
-      delay(20);
+      udp.read(packetBuffer, 6); // read the packet into the buffer, we are reading 4 byte
+      print_data();
+      delay(100);
     }
+}
+void print_data()
+{
+  for(int i=0;i<6;i++)
+  {
+    Serial.print(packetBuffer[i]);
+    Serial.print(" ");
+   }
+   Serial.println();
+      
 }
 //=======================================================================
